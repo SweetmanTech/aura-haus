@@ -5,7 +5,7 @@ export const getPublicClient = (chainId: number) => {
   const chain = getViemNetwork(chainId);
   const publicClient = createPublicClient({
     chain: chain as Chain,
-    transport: http(),
+    transport: http(`https://base-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`),
   }) as PublicClient;
   return publicClient;
 };
