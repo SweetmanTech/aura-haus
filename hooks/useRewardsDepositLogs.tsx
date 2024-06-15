@@ -11,7 +11,6 @@ const useRewardsDepositLogs = () => {
           throw new Error('Network response was not ok');
         }
         const fetchedResults = await response.json();
-        console.log('SWEETS FETCHED RESULTS', fetchedResults);
         setResults(fetchedResults);
       } catch (err) {
         console.error(err);
