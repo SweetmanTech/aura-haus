@@ -8,7 +8,6 @@ const getSetupNewContractLogs = async () => {
   const blockRange = 1000000n;
   const fromBlock = toBlock - blockRange;
   const creators = await getCreatorList();
-  console.log('creators:', creators);
   return await getLogs({
     event: setupNewContractEventAbi,
     fromBlock,

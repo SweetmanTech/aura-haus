@@ -7,10 +7,7 @@ const getCreatorList = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-
-    const returnValue = data.creators;
-    console.log('returnValue:', returnValue);
-    return returnValue;
+    return data.creators;
   } catch (error) {
     console.error('Failed to fetch creator list:', error);
     return null;
