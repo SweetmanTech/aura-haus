@@ -1,14 +1,10 @@
-import getLink from './getLink';
 import fetchUrls from './zora/fetchUrls';
+import formatRawLogs from './zora/formatRawLogs';
 import getSetupNewTokenLogs from './zora/getSetupNewTokenLogs';
 
 const getInitialFeed = async () => {
   const response = await getSetupNewTokenLogs();
-  const urlsAndContracts = response.map((log: any, index: number) => ({
-    url: getLink(log.args.newURI),
-    contract: log.address,
-    owner: log.args.sender,
-  }));
+  const urlsAndContracts = formatRawLogs(response);
   const filteredUrlsAndContracts = urlsAndContracts.filter(
     (entry) => entry.url !== null && entry.url !== undefined,
   );
