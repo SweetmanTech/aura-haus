@@ -1,10 +1,10 @@
 import fetchUrls from './zora/fetchUrls';
-import getRewardsDepositLogs from './zora/getRewardsDepositLogs';
-import getUriAndOwnerMulticall from './zora/getUriAndOwnerMulticall';
+import formatRawLogs from './zora/formatRawLogs';
+import getSetupNewTokenLogs from './zora/getSetupNewTokenLogs';
 
 const getInitialFeed = async () => {
-  const response = await getRewardsDepositLogs();
-  const urlsAndContracts = await getUriAndOwnerMulticall(response);
+  const response = await getSetupNewTokenLogs();
+  const urlsAndContracts = formatRawLogs(response);
   const filteredUrlsAndContracts = urlsAndContracts.filter(
     (entry) => entry.url !== null && entry.url !== undefined,
   );
