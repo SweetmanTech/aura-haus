@@ -9,4 +9,3 @@ export const CHAIN = base;
 export const CHAIN_ID = CHAIN.id;
 export const EAS = '0x4200000000000000000000000000000000000021' as Address;
 export const CURATOR = '0xb5acDED340D66678f01097818940A0F028DAFB8d' as Address;
-export const VERCEL_URL = process.env.VERCEL_URL || 'http://localhost:3000';

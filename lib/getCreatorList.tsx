@@ -17,7 +17,6 @@ const getCreatorList = async () => {
       getDecodedAttestationData(attestation.result),
     );
     const returnValue = mapped[0][0].value.value;
-    console.log('SWEETS MAPPED', returnValue);
     return returnValue;
   } catch (error) {
     console.error('Failed to fetch creator list:', error);
