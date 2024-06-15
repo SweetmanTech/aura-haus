@@ -12,7 +12,14 @@ const fetchUrls = async (entries: { url: string; contract: any; owner: string }[
         return null;
       }),
   );
-  return Promise.allSettled(promises);
+
+  const response = await Promise.allSettled(promises);
+
+  const filteredResponse = response
+    .filter((result) => result.status === 'fulfilled' && result.value !== null)
+    .map((result: any) => result.value);
+
+  return filteredResponse;
 };
 
 export default fetchUrls;

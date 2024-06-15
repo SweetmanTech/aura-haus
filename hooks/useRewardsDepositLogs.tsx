@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import getInitialFeed from '@/lib/getInitialFeed';
 
 const useRewardsDepositLogs = () => {
   const [results, setResults] = useState<any[]>([]);
@@ -7,11 +6,12 @@ const useRewardsDepositLogs = () => {
   useEffect(() => {
     const init = async () => {
       try {
-        const fetchedResults = await getInitialFeed();
-        const successfulResults = fetchedResults
-          .filter((result) => result.status === 'fulfilled' && result.value !== null)
-          .map((result: any) => result.value);
-        setResults(successfulResults);
+        const response = await fetch('/api/feed');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const fetchedResults = await response.json();
+        setResults(fetchedResults);
       } catch (err) {
         console.error(err);
       }

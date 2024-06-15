@@ -3,6 +3,7 @@ import Collection from '../Collection';
 
 const Feed = () => {
   const { results } = useRewardsDepositLogs();
+
   return (
     <div>
       {results.length > 0 ? (

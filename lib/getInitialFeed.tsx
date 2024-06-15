@@ -5,7 +5,9 @@ import getUriAndOwnerMulticall from './zora/getUriAndOwnerMulticall';
 const getInitialFeed = async () => {
   const response = await getRewardsDepositLogs();
   const urlsAndContracts = await getUriAndOwnerMulticall(response);
-  const filteredUrlsAndContracts = urlsAndContracts.filter((entry) => entry.url !== null);
+  const filteredUrlsAndContracts = urlsAndContracts.filter(
+    (entry) => entry.url !== null && entry.url !== undefined,
+  );
   return await fetchUrls(filteredUrlsAndContracts as any);
 };
 
