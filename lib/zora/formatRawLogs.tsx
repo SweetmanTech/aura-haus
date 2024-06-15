@@ -2,9 +2,9 @@ import getLink from '../getLink';
 
 const formatRawLogs = (rawLogs: any[]) =>
   rawLogs.map((log: any) => ({
-    url: getLink(log.args.newURI),
-    contract: log.address,
-    owner: log.args.sender,
+    url: getLink(log.args.contractURI),
+    contract: log.args.newContract,
+    owner: log.args.creator,
   }));
 
 export default formatRawLogs;
