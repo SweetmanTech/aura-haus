@@ -3,6 +3,8 @@ import Collection from '../Collection';
 
 const Feed = () => {
   const { results } = useRewardsDepositLogs();
+  console.log('Sweets results', results);
+
   return (
     <div>
       {results.length > 0 ? (
