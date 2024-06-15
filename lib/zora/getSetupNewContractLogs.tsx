@@ -1,21 +1,20 @@
-import { CHAIN_ID } from '../consts';
-import { getPublicClient } from '../viem';
 import { setupNewContractEventAbi } from '../abi/setup-new-contract-event';
 import getCreatorList from '../getCreatorList';
+import getLogs from '../viem/getLogs';
+import getLatestBlock from '../viem/getLatestBlock';
 
 const getSetupNewContractLogs = async () => {
-  const publicClient = getPublicClient(CHAIN_ID);
-  const { number: toBlock } = await publicClient.getBlock({
-    blockTag: 'latest',
-  });
+  const toBlock = await getLatestBlock();
   const blockRange = 1000000n;
   const fromBlock = toBlock - blockRange;
-  return await publicClient.getLogs({
+  const creators = await getCreatorList();
+  console.log('creators:', creators);
+  return await getLogs({
     event: setupNewContractEventAbi,
     fromBlock,
     toBlock,
     args: {
-      creator: getCreatorList(),
+      creator: creators,
     },
   });
 };
